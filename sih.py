@@ -282,7 +282,7 @@ st.info("""
 ⚠️ **Prototype Notice**:  
 This dashboard currently runs on **sample data** because the real Argo dataset is very large and cannot be hosted on a free server.  
 
-The prototype is built using **real data from Argo floats**, as demonstrated in the [YouTube demo](https://youtube.com/your-video-link) and [GitHub repository](https://github.com/your-repo-link).  
+The prototype is built using **real data from Argo floats**, as demonstrated in the YouTube and GitHub repository.  
 
 """)
 # -----------------------------
