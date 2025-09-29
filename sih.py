@@ -41,22 +41,22 @@ Showing salinity analysis visualization below for reference.
         if "highest" in user_input_lower or "warmest" in user_input_lower:
             max_temp_idx = df['temperature'].idxmax()
             max_temp_data = df.loc[max_temp_idx]
-            return f" The highest temperature recorded is **{max_temp_data['temperature']:.2f}°C** by Float **{max_temp_data['float_id']}** at {max_temp_data['pressure']:.0f}m depth on {max_temp_data['time'].strftime('%Y-%m-%d') if pd.notna(max_temp_data['time']) else 'unknown date'}."
+            return f" The highest temperature recorded is {max_temp_data['temperature']:.2f}°C by Float {max_temp_data['float_id']} at {max_temp_data['pressure']:.0f}m depth on {max_temp_data['time'].strftime('%Y-%m-%d') if pd.notna(max_temp_data['time']) else 'unknown date'}."
         
         elif "lowest" in user_input_lower or "coldest" in user_input_lower:
             min_temp_idx = df['temperature'].idxmin()
             min_temp_data = df.loc[min_temp_idx]
-            return f"🧊 The lowest temperature recorded is **{min_temp_data['temperature']:.2f}°C** by Float **{min_temp_data['float_id']}** at {min_temp_data['pressure']:.0f}m depth on {min_temp_data['time'].strftime('%Y-%m-%d') if pd.notna(max_temp_data['time']) else 'unknown date'}."
+            return f"🧊 The lowest temperature recorded is **{min_temp_data['temperature']:.2f}°C** by Float {min_temp_data['float_id']} at {min_temp_data['pressure']:.0f}m depth on {min_temp_data['time'].strftime('%Y-%m-%d') if pd.notna(max_temp_data['time']) else 'unknown date'}."
         
         elif "average" in user_input_lower or "mean" in user_input_lower:
             avg_temp = df['temperature'].mean()
-            return f"📊 The average temperature across all measurements is **{avg_temp:.2f}°C**. The temperature ranges from {df['temperature'].min():.1f}°C to {df['temperature'].max():.1f}°C."
+            return f"📊 The average temperature across all measurements is **{avg_temp:.2f}°C. The temperature ranges from {df['temperature'].min():.1f}°C to {df['temperature'].max():.1f}°C."
     
     # Depth/Pressure queries
     elif "depth" in user_input_lower or "deepest" in user_input_lower:
         max_depth_idx = df['pressure'].idxmax()
         max_depth_data = df.loc[max_depth_idx]
-        return f"🏊‍♂️ The deepest measurement was taken at **{max_depth_data['pressure']:.0f}m** by Float **{max_depth_data['float_id']}** with a temperature of {max_depth_data['temperature']:.1f}°C and salinity of {max_depth_data['salinity']:.2f} PSU."
+        return f"🏊‍♂️ The deepest measurement was taken at {max_depth_data['pressure']:.0f}m by Float {max_depth_data['float_id']} with a temperature of {max_depth_data['temperature']:.1f}°C and salinity of {max_depth_data['salinity']:.2f} PSU."
     
     # Float-specific queries
     elif "float" in user_input_lower and any(str(fid) in user_input for fid in float_summary['float_id']):
