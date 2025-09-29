@@ -41,22 +41,22 @@ Showing salinity analysis visualization below for reference.
         if "highest" in user_input_lower or "warmest" in user_input_lower:
             max_temp_idx = df['temperature'].idxmax()
             max_temp_data = df.loc[max_temp_idx]
-            return f" The highest temperature recorded is **{max_temp_data['temperature']:.2f}°C** by Float **{max_temp_data['float_id']}** at {max_temp_data['pressure']:.0f}m depth on {max_temp_data['time'].strftime('%Y-%m-%d') if pd.notna(max_temp_data['time']) else 'unknown date'}."
+            return f" The highest temperature recorded is {max_temp_data['temperature']:.2f}°C by Float {max_temp_data['float_id']} at {max_temp_data['pressure']:.0f}m depth on {max_temp_data['time'].strftime('%Y-%m-%d') if pd.notna(max_temp_data['time']) else 'unknown date'}."
         
         elif "lowest" in user_input_lower or "coldest" in user_input_lower:
             min_temp_idx = df['temperature'].idxmin()
             min_temp_data = df.loc[min_temp_idx]
-            return f"🧊 The lowest temperature recorded is **{min_temp_data['temperature']:.2f}°C** by Float **{min_temp_data['float_id']}** at {min_temp_data['pressure']:.0f}m depth on {min_temp_data['time'].strftime('%Y-%m-%d') if pd.notna(max_temp_data['time']) else 'unknown date'}."
+            return f"🧊 The lowest temperature recorded is {min_temp_data['temperature']:.2f}°C by Float {min_temp_data['float_id']} at {min_temp_data['pressure']:.0f}m depth on {min_temp_data['time'].strftime('%Y-%m-%d') if pd.notna(max_temp_data['time']) else 'unknown date'}."
         
         elif "average" in user_input_lower or "mean" in user_input_lower:
             avg_temp = df['temperature'].mean()
-            return f"📊 The average temperature across all measurements is **{avg_temp:.2f}°C**. The temperature ranges from {df['temperature'].min():.1f}°C to {df['temperature'].max():.1f}°C."
+            return f"📊 The average temperature across all measurements is {avg_temp:.2f}°C. The temperature ranges from {df['temperature'].min():.1f}°C to {df['temperature'].max():.1f}°C."
     
     # Depth/Pressure queries
     elif "depth" in user_input_lower or "deepest" in user_input_lower:
         max_depth_idx = df['pressure'].idxmax()
         max_depth_data = df.loc[max_depth_idx]
-        return f"🏊‍♂️ The deepest measurement was taken at **{max_depth_data['pressure']:.0f}m** by Float **{max_depth_data['float_id']}** with a temperature of {max_depth_data['temperature']:.1f}°C and salinity of {max_depth_data['salinity']:.2f} PSU."
+        return f"🏊‍♂️ The deepest measurement was taken at {max_depth_data['pressure']:.0f}m by Float {max_depth_data['float_id']} with a temperature of {max_depth_data['temperature']:.1f}°C and salinity of {max_depth_data['salinity']:.2f} PSU."
     
     # Float-specific queries
     elif "float" in user_input_lower and any(str(fid) in user_input for fid in float_summary['float_id']):
@@ -82,10 +82,10 @@ Showing salinity analysis visualization below for reference.
         if "highest" in user_input_lower:
             max_sal_idx = df['salinity'].idxmax()
             max_sal_data = df.loc[max_sal_idx]
-            return f"💧 The highest salinity recorded is **{max_sal_data['salinity']:.3f} PSU** by Float **{max_sal_data['float_id']}** at {max_sal_data['pressure']:.0f}m depth."
+            return f"💧 The highest salinity recorded is {max_sal_data['salinity']:.3f} PSU by Float {max_sal_data['float_id']} at {max_sal_data['pressure']:.0f}m depth."
         elif "average" in user_input_lower:
             avg_sal = df['salinity'].mean()
-            return f"💧 The average salinity across all measurements is **{avg_sal:.3f} PSU**, ranging from {df['salinity'].min():.3f} to {df['salinity'].max():.3f} PSU."
+            return f"💧 The average salinity across all measurements is {avg_sal:.3f} PSU, ranging from {df['salinity'].min():.3f} to {df['salinity'].max():.3f} PSU."
     
     # Fleet overview queries
     elif "overview" in user_input_lower or "summary" in user_input_lower or "fleet" in user_input_lower:
@@ -331,9 +331,9 @@ with col1:
     
     col_send, col_clear = st.columns([1, 1])
     with col_send:
-        send_button = st.button("🚀 Ask Assistant", type="primary", use_container_width=True)
+        send_button = st.button("Ask", type="primary", use_container_width=True)
     with col_clear:
-        if st.button("🗑️ Clear Chat", use_container_width=True):
+        if st.button("Clear Chat", use_container_width=True):
             st.session_state.chat_history = []
             st.rerun()
 
@@ -385,7 +385,7 @@ with col2:
         """
         st.markdown(temp_stats)
     
-    if st.button("💧 Salinity Insights", use_container_width=True):
+    if st.button("Salinity", use_container_width=True):
         sal_stats = f"""
         **Salinity Insights:**
         • Global Average: {df['salinity'].mean():.3f} PSU
@@ -528,7 +528,7 @@ with show_visualizations:
             st.rerun()
 
     if "show_salinity" in st.session_state and st.session_state.show_salinity:
-        st.subheader("💧 Salinity Analysis")
+        st.subheader("💧 Salinity")
         col1, col2 = st.columns(2)
         with col1:
             st.markdown("**Salinity vs Depth Profiles**")
