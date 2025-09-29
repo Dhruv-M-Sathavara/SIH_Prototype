@@ -46,11 +46,19 @@ Showing salinity analysis visualization below for reference.
         elif "lowest" in user_input_lower or "coldest" in user_input_lower:
             min_temp_idx = df['temperature'].idxmin()
             min_temp_data = df.loc[min_temp_idx]
+<<<<<<< HEAD
             return f"🧊 The lowest temperature recorded is {min_temp_data['temperature']:.2f}°C by Float {min_temp_data['float_id']} at {min_temp_data['pressure']:.0f}m depth on {min_temp_data['time'].strftime('%Y-%m-%d') if pd.notna(max_temp_data['time']) else 'unknown date'}."
         
         elif "average" in user_input_lower or "mean" in user_input_lower:
             avg_temp = df['temperature'].mean()
             return f"📊 The average temperature across all measurements is {avg_temp:.2f}°C. The temperature ranges from {df['temperature'].min():.1f}°C to {df['temperature'].max():.1f}°C."
+=======
+            return f"🧊 The lowest temperature recorded is **{min_temp_data['temperature']:.2f}°C** by Float {min_temp_data['float_id']} at {min_temp_data['pressure']:.0f}m depth on {min_temp_data['time'].strftime('%Y-%m-%d') if pd.notna(max_temp_data['time']) else 'unknown date'}."
+        
+        elif "average" in user_input_lower or "mean" in user_input_lower:
+            avg_temp = df['temperature'].mean()
+            return f"📊 The average temperature across all measurements is **{avg_temp:.2f}°C. The temperature ranges from {df['temperature'].min():.1f}°C to {df['temperature'].max():.1f}°C."
+>>>>>>> 6a964751dbde897a72900d9d4b073aaf664b7ef2
     
     # Depth/Pressure queries
     elif "depth" in user_input_lower or "deepest" in user_input_lower:
